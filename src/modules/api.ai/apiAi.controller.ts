@@ -12,8 +12,8 @@ export class ApiAiController {
             resolvedQuery: req.body.result.resolvedQuery,
             action: req.body.result.action,
             actionIncomplete: req.body.result.actionIncomplete,
-            context: req.body.result.contexts,
             parameters: req.body.result.parameters,
+            context: req.body.result.contexts
         };
         console.log('response: ', response);
     }

@@ -1,7 +1,7 @@
 {
-  "name": "nest-js-sequelize-jwt",
+  "name": "nest-js-api-ai",
   "version": "1.3.1",
-  "description": "Starter kit Nest + Sequelize + jwt",
+  "description": "Implement api.ai in your app to get callback with all information you need from the request at api.ai",
   "main": "src/server.ts",
   "keywords": [
     "nest",
@@ -13,7 +13,10 @@
     "typescript",
     "jwt",
     "jsonwebtoken",
-    "dotenv"
+    "dotenv",
+    "api-ai",
+    "assistant",
+    "ai"
   ],
   "author": {
     "name": "Adrien de Peretti",
@@ -21,7 +24,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/adrien2p/nest-js-sequelize-jwt/issues"
+    "url": "https://github.com/adrien2p/nest-js-api-ai/issues"
   },
   "scripts": {
     "lint": "tslint -c tslint.json -p tsconfig.json -e 'node_modules/**' -e '**/*.d.ts' -e 'tests/**' --type-check --fix 'src/**/*.ts'",

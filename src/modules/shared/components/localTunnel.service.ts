@@ -1,10 +1,12 @@
 'use strict';
 
 import { Component } from "@nestjs/common";
-const localTunnel = require('localtunnel');
+import * as localTunnel from 'localtunnel';
+import { config } from "../../../config/global";
+import { ILocalTunnelService } from "../interfaces/ILocalTunnelService";
 
 @Component()
-export class LocalTunnelService {
+export class LocalTunnelService implements ILocalTunnelService {
     private _localTunnel: any;
     private _url: string;
 
@@ -13,24 +15,29 @@ export class LocalTunnelService {
         this._url = '';
     }
 
-    get url() {
+    get url(): string {
         return this._url;
     }
 
-    start() {
-        if (!this._url) {
-            localTunnel(3000, (err, tunnel) => {
-                if (err) throw new Error(err);
+    start(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            if (!this._url) {
+                localTunnel(config.localTunnelPort, (err, tunnel) => {
+                    if (err) throw new Error(err);
 
-                this._localTunnel = tunnel;
-                this._url = tunnel.url;
-                console.log('local tunnel started.', this._url);
-            });
-        }
+                    this._localTunnel = tunnel;
+                    this._url = tunnel.url;
+                    console.log(`local tunnel started on ${this._url}`);
+                    return resolve(`local tunnel started on ${this._url}`);
+                });
+            } else {
+                return reject(`local tunnel already started on ${this._url}`);
+            }
+        });
     }
 
-    close() {
+    close(): void {
         this._url = '';
-        this._localTunnel.close && this._localTunnel.close();
+        this._localTunnel && this._localTunnel.close();
     }
 }
