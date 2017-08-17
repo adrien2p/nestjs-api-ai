@@ -1,8 +1,7 @@
 ![Nest](assets/logo.png)
 
-This project implement for now a module to catch web hook from api.ai when a request is triggered 
-on you agent. 
-Soon i'll implement a way to send request to api.ai
+This project implement for now a module to catch web hook from [api.ai](https://api.ai/) when a request is triggered 
+on you agent. Soon i'll implement a way to send request to [api.ai](https://api.ai/)
 
  ### How it works
  
@@ -16,10 +15,10 @@ Soon i'll implement a way to send request to api.ai
 To configure put all config file in the `./src/config/*`.
 To use the env variable, remove `.demo` from `.env.demo`.
 
-### WebHook from api.ai
+### WebHook from [api.ai](https://api.ai/)
 
-To receive a callback from api.ai, you must enabled webhook in `Fullfillment` tab and fill all information needed.
-To see how it works locally, you need to activate a local tunnel using the following url `GET localhost/localTunneStart` (`GET localhost/localTunneStop` to close it).
+To receive a callback from [api.ai](https://api.ai/), you must enabled webhook in `Fullfillment` tab and fill all information needed.
+To see how it works locally, you need to activate a local tunnel using the following url `GET http://localhost:3000/localTunnelStart` (`GEThttp://localhost:3000/localTunnelStop` to close it).
 The local tunnel url returned need to be write in the `url` section with the path to the webHook which is actually `/apiAi`
 
 After to be logged in your app you should give you `token` access in the `headers` section : `authorization Bearer ...`
@@ -27,7 +26,7 @@ Then, active `Fullfillment` in the targeted intent.
 
 ![fullfillment](assets/fullfillment.png)
 
-After api.ai received request, you should received a callback and see in the console the following result :
+After [api.ai](https://api.ai/) received request, you should received a callback and see in the console the following result :
 ```json
 {
     "source": "agent",
