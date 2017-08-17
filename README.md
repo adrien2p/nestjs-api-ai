@@ -18,7 +18,11 @@ To use the env variable, remove `.demo` from `.env.demo`.
 ### WebHook from [api.ai](https://api.ai/)
 
 To receive a callback from [api.ai](https://api.ai/), you must enabled webhook in `Fullfillment` tab and fill all information needed.
-To see how it works locally, you need to activate a local tunnel using the following url `GET http://localhost:3000/localTunnelStart` (`GEThttp://localhost:3000/localTunnelStop` to close it).
+To see how it works locally, you need to activate a local tunnel using the following url
+ 
+- `GET http://localhost:3000/localTunnelStart` to start it
+- `GET http://localhost:3000/localTunnelStop` to close it
+
 The local tunnel url returned need to be write in the `url` section with the path to the webHook which is actually `/apiAi`
 
 After to be logged in your app you should give you `token` access in the `headers` section : `authorization Bearer ...`

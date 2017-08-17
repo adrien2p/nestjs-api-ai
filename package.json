@@ -1,6 +1,6 @@
 {
   "name": "nest-js-api-ai",
-  "version": "1.3.1",
+  "version": "1.0.0",
   "description": "Implement api.ai in your app to get callback with all information you need from the request at api.ai",
   "main": "src/server.ts",
   "keywords": [
