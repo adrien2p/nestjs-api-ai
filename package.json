@@ -52,6 +52,7 @@
     "codelyzer": "^3.1.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
+    "firebase-admin": "^5.2.1",
     "graphql": "^0.10.5",
     "graphql-tools": "^1.2.1",
     "graphql-type-json": "^0.1.4",

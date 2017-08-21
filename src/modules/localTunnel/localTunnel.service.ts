@@ -2,8 +2,8 @@
 
 import { Component } from "@nestjs/common";
 import * as localTunnel from 'localtunnel';
-import { config } from "../../../config/global";
-import { ILocalTunnelService } from "../interfaces/ILocalTunnelService";
+import { config } from "../../config/global";
+import { ILocalTunnelService } from "./interfaces/ILocalTunnelService";
 
 @Component()
 export class LocalTunnelService implements ILocalTunnelService {

@@ -1,19 +1,12 @@
 'use strict';
 
 import { Module } from '@nestjs/common';
-import { AuthMiddleware } from "../../middlewares/auth.middleware";
-import { MiddlewaresConsumer } from "@nestjs/common/interfaces/middlewares";
-import { LocalTunnelService } from "./components/localTunnel.service";
-import { SharedController } from "./shared.controller";
+import { FirebaseRepository } from "./firebase/firebase.repository";
 
 @Module({
-    controllers: [SharedController],
-    components: [LocalTunnelService],
+    controllers: [],
+    components: [FirebaseRepository],
     modules: [],
-    exports: [LocalTunnelService]
+    exports: [FirebaseRepository]
 })
-export class SharedModule {
-    configure(consumer: MiddlewaresConsumer) {
-        consumer.apply(AuthMiddleware).forRoutes(SharedController);
-    }
-}
+export class SharedModule { }
