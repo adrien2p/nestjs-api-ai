@@ -21,7 +21,7 @@ export class CinemaActionsService extends AbstractAction implements IActionServi
         switch (data.result.action) {
             case 'input.getRelease':
                 /* Saved data before any action. */
-                await this.saveData('actions/input/getRealse', data);
+                await this.saveData('actions/input/getRelease', data);
                 response = await this.getRelease(data);
                 console.log(`Action called : ${data.result.action} from "cinema" agent with the following statement : ${data.result.resolvedQuery}.`);
                 break;
@@ -40,7 +40,7 @@ export class CinemaActionsService extends AbstractAction implements IActionServi
             source: this.constructor.name
         };
 
-        await this.saveData('action/output/getRelease', Object.assign({
+        await this.saveData('actions/output/getRelease', Object.assign({
             requestId: data.id,
             timestamp: data.timestamp,
             lang: data.lang,
