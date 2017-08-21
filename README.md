@@ -30,7 +30,7 @@ Then, active `Fullfillment` in the targeted intent.
 
 ![fullfillment](assets/fullfillment.png)
 
-After [api.ai](https://api.ai/) received request, you should received a callback and see in the console the following result :
+After [api.ai](https://api.ai/) received request, you should received a callback as the following result :
 ```json
 {
     "source": "agent",
@@ -75,3 +75,12 @@ After [api.ai](https://api.ai/) received request, you should received a callback
     ]
 }
 ```
+
+And then, the result is sent to the run method of the service `CinemaActionService` which manage the rest of the process.
+Including, saving data into firebase database.
+
+### What is include
+
+- `shared` which provide the `FirebaseRepository` which can call with an intent name to find the associated provider `./modules/shared/firebase/`
+- `.env` to push all config used
+- `api.ai` module with the agents management
