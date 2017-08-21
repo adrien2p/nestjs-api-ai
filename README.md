@@ -28,7 +28,7 @@ The local tunnel url returned need to be write in the `url` section with the pat
 After to be logged in your app you should give you `token` access in the `headers` section : `authorization Bearer ...`
 Then, active `Fullfillment` in the targeted intent.
 
-![fullfillment](assets/fullfillment.png)
+![fullfillment](assets/fulfillment.png)
 
 After [api.ai](https://api.ai/) received request, you should received a callback as the following result :
 ```json
@@ -78,6 +78,8 @@ After [api.ai](https://api.ai/) received request, you should received a callback
 
 And then, the result is sent to the run method of the service `CinemaActionService` which manage the rest of the process.
 Including, saving data into firebase database.
+
+And when the process is done, a response is generate to be send to the `api.api`.
 
 ### What is include
 
