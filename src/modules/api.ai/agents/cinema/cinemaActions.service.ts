@@ -4,6 +4,7 @@ import { Component } from "@nestjs/common";
 import { IActionService } from "../../interfaces/IActionService";
 import { IActionServiceResponse } from "../../interfaces/IActionServiceResponse";
 import { AbstractAction } from "../abstractAction";
+import { FirebaseRepository } from "../../../shared/firebase/firebase.repository";
 
 @Component()
 export class CinemaActionsService extends AbstractAction implements IActionService {
@@ -11,8 +12,8 @@ export class CinemaActionsService extends AbstractAction implements IActionServi
         'input.getRelease'
     ];
 
-    constructor() {
-        super('cinema');
+    constructor(private firebaseRepository: FirebaseRepository) {
+        super('cinema', firebaseRepository);
     }
 
     public async run(data: any): Promise<IActionServiceResponse> {
