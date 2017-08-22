@@ -17,9 +17,9 @@ export class CinemaFirebaseProvider implements IFirebaseProvider {
             this.app = admin.initializeApp({
                 credential: admin.credential.cert(JSON.parse(this.cinemaAgentCert)),
                 databaseURL: process.env.FIREBASE_CINEMA_DATABASE_URL || ''
-            }, 'cinemaFirebase');
+            }, process.env.FIREBASE_CINEMA_DATABASE_NAME || '');
         } else {
-            this.app = admin.app('cinemaFirebase');
+            this.app = admin.app(process.env.FIREBASE_CINEMA_DATABASE_NAME || '');
         }
         this.isInitialized = true;
         this.database = this.app.database();

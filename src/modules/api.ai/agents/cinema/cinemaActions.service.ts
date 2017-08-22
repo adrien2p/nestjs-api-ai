@@ -36,11 +36,11 @@ export class CinemaActionsService extends AbstractAction implements IActionServi
         const response = {
             speech: `Demande "${data.result.resolvedQuery}" pour "${data.result.action}" 
                     de l'intent "${data.result.metadata.intentName}"`,
-            displayText: 'toto',
+            displayText: 'displayText',
             source: this.constructor.name
         };
 
-        await this.saveData('actions/output/getRelease' + data.id, Object.assign({
+        await this.saveData('actions/output/getRelease/' + data.id, Object.assign({
             requestId: data.id,
             timestamp: data.timestamp,
             lang: data.lang,
