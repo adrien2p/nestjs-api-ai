@@ -7,16 +7,19 @@ import { CinemaFirebaseProvider } from "./providers/cinemaFirebase.provider";
 
 @Component()
 export class FirebaseRepository implements IFirebaseRepository {
-    public providers: { [agentName: string]: IFirebaseProvider }  = {};
+    private providersMap = {
+        cinema: CinemaFirebaseProvider
+    };
+    public providersInstance: { [agentName: string]: IFirebaseProvider }  = {};
 
     constructor() { }
 
     public getFirebaseProviderRelatedTo(agentName: string) {
         if (!agentName) throw new Error('missing parameter agentName.');
 
-        this.providers[agentName] = this.providers[agentName] || new CinemaFirebaseProvider();
-        if (!this.providers[agentName].isInitialized) this.providers[agentName].init();
+        this.providersInstance[agentName] = this.providersInstance[agentName] || new this.providersMap[agentName]();
+        if (!this.providersInstance[agentName].isInitialized) this.providersInstance[agentName].init();
 
-        return this.providers[agentName];
+        return this.providersInstance[agentName];
     }
 }
