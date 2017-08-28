@@ -1,7 +1,10 @@
 ![Nest](assets/logo.png)
 
-This project implement for now a module to catch web hook from [api.ai](https://api.ai/) when a request is triggered 
-on you agent. Soon i'll implement a way to send request to [api.ai](https://api.ai/)
+This project allow you to catch web hook from [api.ai](https://api.ai/) when a request is triggered 
+on you agent, the server process the result to send back the response and let your assistant speech it.
+
+For the authentication part, when the user is authenticated with google OAuth2, The middleware catch the request
+to create the user locally if is not already created.
 
  ### How it works
  
