@@ -30,6 +30,9 @@ Then, active `Fullfillment` in the targeted intent.
 
 ![fullfillment](assets/fulfillment.png)
 
+After that, to connect your agent to actions on google, go to `Integration` part and active actions on google.
+Then configure it to access `OAuth2` authentication with google. (Look `google cloud platform` to manage you OAuth settings).
+
 After [api.ai](https://api.ai/) received request, you should received a callback as the following result :
 ```json
 {
@@ -79,9 +82,3 @@ After [api.ai](https://api.ai/) received request, you should received a callback
 And then, the result is sent to the run method of the service `jeeves` endPoint which manage the rest of the process.
 
 And when the process is done, a response is generate to be send to the `api.api`.
-
-### What is include
-
-- `shared` which provide the `FirebaseRepository` which can call with an intent name to find the associated provider `./modules/shared/firebase/`
-- `.env` to push all config used
-- `api.ai` module with the agents management
