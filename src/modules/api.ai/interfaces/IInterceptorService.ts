@@ -1,7 +1,7 @@
 'use strict';
 
-import { IResponse } from "./IResponse";
-import { IApiAiUserInstance } from "../../../models/interfaces/IApiAiUser";
+import { IResponse } from './IResponse';
+import { IApiAiUserInstance } from '../../../models/interfaces/IApiAiUser';
 
 export interface IInterceptorService {
     /**
@@ -10,5 +10,5 @@ export interface IInterceptorService {
      * @param {IApiAiUser} apiAiUser
      * @return {IResponse}
      */
-    parse(data: any, apiAiUser: IApiAiUserInstance): IResponse;
+    parse (data: any, apiAiUser: IApiAiUserInstance): IResponse;
 }

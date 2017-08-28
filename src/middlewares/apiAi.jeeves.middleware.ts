@@ -2,9 +2,7 @@
 
 import { Middleware, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import * as crypto from 'crypto';
 import { MessageCodeError } from '../lib/error/MessageCodeError';
-import { models } from '../models/index';
 
 @Middleware()
 export class ApiAiJeevesMiddleware implements NestMiddleware {

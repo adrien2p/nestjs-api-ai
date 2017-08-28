@@ -1,6 +1,6 @@
 'use strict';
 
-import { IActionServiceResponse } from "./IActionServiceResponse";
+import { IActionServiceResponse } from './IActionServiceResponse';
 
 export interface IActionService {
     /**
@@ -8,5 +8,5 @@ export interface IActionService {
      * @param {any} data
      * @return {IActionServiceResponse}
      */
-    run(data: any): Promise<IActionServiceResponse>;
+    run (data: any): Promise<IActionServiceResponse>;
 }

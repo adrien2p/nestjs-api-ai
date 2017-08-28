@@ -44,7 +44,7 @@ export const errorMessagesConfig: { [messageCode: string]: IErrorMessages } = {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
         errorMessage: 'Missing parameter id.',
-        userMessage: "Veuillez fournir un id valid."
+        userMessage: 'Veuillez fournir un id valid.'
     },
     'user:notFound': {
         type: 'notFound',

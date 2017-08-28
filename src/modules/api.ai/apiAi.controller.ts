@@ -2,11 +2,11 @@
 
 import { Controller, HttpStatus, Post } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { InterceptorService } from "./actions/jeeves/interceptor.service";
+import { InterceptorService } from './actions/jeeves/interceptor.service';
 
 @Controller()
 export class ApiAiController {
-    constructor(private interceptorService: InterceptorService) { }
+    constructor (private interceptorService: InterceptorService) { }
 
     @Post('jeeves')
     public async jeeves (req: Request, res: Response) {

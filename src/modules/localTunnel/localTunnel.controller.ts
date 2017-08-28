@@ -2,11 +2,11 @@
 
 import { Controller, Get, HttpStatus } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { LocalTunnelService } from "./localTunnel.service";
+import { LocalTunnelService } from './localTunnel.service';
 
 @Controller()
 export class LocalTunnelController {
-    constructor(private localTunnelService: LocalTunnelService) { }
+    constructor (private localTunnelService: LocalTunnelService) { }
 
     @Get('localTunnelStart')
     public async localTunnelStart (req: Request, res: Response) {

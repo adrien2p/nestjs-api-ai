@@ -12,7 +12,7 @@ import { UsersController } from './users.controller';
     exports: []
 })
 export class UsersModule {
-    configure(consumer: MiddlewaresConsumer) {
+    configure (consumer: MiddlewaresConsumer) {
         consumer.apply(AuthMiddleware).forRoutes(
             { path: '/users', method: RequestMethod.GET },
             { path: '/users/:id', method: RequestMethod.GET },

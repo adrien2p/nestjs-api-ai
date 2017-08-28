@@ -1,11 +1,8 @@
 'use strict';
 
-import * as crypto from 'crypto';
 import * as SequelizeStatic from 'sequelize';
 import { DataTypes, Sequelize } from 'sequelize';
-import { IUser, IUserInstance } from './interfaces/IUser';
-import { MessageCodeError } from '../lib/error/MessageCodeError';
-import { IApiAiUser, IApiAiUserInstance } from "./interfaces/IApiAiUser";
+import { IApiAiUser, IApiAiUserInstance } from './interfaces/IApiAiUser';
 
 export default function User (sequelize: Sequelize, dataTypes: DataTypes): SequelizeStatic.Model<IApiAiUserInstance, IApiAiUser> {
     let ApiAiUser = sequelize.define<IApiAiUserInstance, IApiAiUser>('ApiAiUser', {

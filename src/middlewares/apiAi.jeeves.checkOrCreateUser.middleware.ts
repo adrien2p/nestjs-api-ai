@@ -16,7 +16,7 @@ export class ApiAiJeevesCheckOrCreateUserMiddleware implements NestMiddleware {
             const googleUserId = data.originalRequest.data.user.userId;
             const googleApiUrl = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=';
 
-            const apiAiUser = await models.ApiAiUser.findOne({ where: { googleUserId: googleUserId }});
+            let apiAiUser = await models.ApiAiUser.findOne({ where: { googleUserId: googleUserId }});
             if (!apiAiUser) {
                 /* Get user info from google to create a new apiAiUser locally. */
                 const userInfo: any = await new Promise((resolve, reject) => {
@@ -29,7 +29,7 @@ export class ApiAiJeevesCheckOrCreateUserMiddleware implements NestMiddleware {
                 });
 
                 /* Create the new user. */
-                const apiAiUser = await sequelize.transaction(t => models.ApiAiUser.create({
+                apiAiUser = await sequelize.transaction(t => models.ApiAiUser.create({
                     firstName: userInfo.given_name,
                     lastName: userInfo.family_name,
                     email: userInfo.email,

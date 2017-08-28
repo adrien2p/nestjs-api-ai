@@ -3,7 +3,7 @@
 import * as SequelizeStatic from 'sequelize';
 import { DataTypes, Sequelize } from 'sequelize';
 import { MessageCodeError } from '../lib/error/MessageCodeError';
-import { IAction, IActionInstance } from "./interfaces/IAction";
+import { IAction, IActionInstance } from './interfaces/IAction';
 
 export default function Action (sequelize: Sequelize, dataTypes: DataTypes): SequelizeStatic.Model<IActionInstance, IAction> {
     let Action = sequelize.define<IActionInstance, IAction>('Action', {

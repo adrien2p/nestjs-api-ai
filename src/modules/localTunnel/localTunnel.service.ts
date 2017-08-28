@@ -1,25 +1,25 @@
 'use strict';
 
-import { Component } from "@nestjs/common";
+import { Component } from '@nestjs/common';
 import * as localTunnel from 'localtunnel';
-import { config } from "../../config/global";
-import { ILocalTunnelService } from "./interfaces/ILocalTunnelService";
+import { config } from '../../config/global';
+import { ILocalTunnelService } from './interfaces/ILocalTunnelService';
 
 @Component()
 export class LocalTunnelService implements ILocalTunnelService {
     private _localTunnel: any;
     private _url: string;
 
-    constructor() {
+    constructor () {
         this._localTunnel = null;
         this._url = '';
     }
 
-    get url(): string {
+    get url (): string {
         return this._url;
     }
 
-    start(): Promise<any> {
+    start (): Promise<any> {
         return new Promise((resolve, reject) => {
             if (!this._url) {
                 localTunnel(config.localTunnelPort, (err, tunnel) => {
@@ -36,7 +36,7 @@ export class LocalTunnelService implements ILocalTunnelService {
         });
     }
 
-    close(): void {
+    close (): void {
         this._url = '';
         this._localTunnel && this._localTunnel.close();
     }
