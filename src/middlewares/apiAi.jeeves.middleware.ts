@@ -7,10 +7,12 @@ import { MessageCodeError } from '../lib/error/MessageCodeError';
 import { models } from '../models/index';
 
 @Middleware()
-export class ApiAiMiddleware implements NestMiddleware {
+export class ApiAiJeevesMiddleware implements NestMiddleware {
     resolve () {
         return async function (req: Request, res: Response, next: NextFunction) {
-            if (req.headers.authorization && req.headers.authorization === process.env.API_AI_CLIENT_ACCESS_TOKEN) {
+            if (!req.headers.authorization) throw new MessageCodeError('request:unauthorized');
+
+            if (process.env.API_AI_CLIENT_ACCESS_TOKEN_JEEVES === req.headers.authorization) {
                 next();
             } else {
                 throw new MessageCodeError('request:unauthorized');

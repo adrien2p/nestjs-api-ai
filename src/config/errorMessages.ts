@@ -4,65 +4,47 @@ import { HttpStatus } from '@nestjs/common';
 import { IErrorMessages } from './interfaces/IErrorMessages';
 
 export const errorMessagesConfig: { [messageCode: string]: IErrorMessages } = {
-    'user:create:missingInformation': {
+    'user:missingInformation': {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
-        errorMessage: 'Unable to create a new user with missing information.',
-        userMessage: 'Impossible de créer un utilisateur avec des données manquantes.'
+        errorMessage: 'Missing parameters on the user.',
+        userMessage: "Des informations sont manquantes sur l'utilisateur."
     },
-    'user:create:missingFirstName': {
+    'user:missingFirstName': {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
-        errorMessage: 'Unable to create a new user without first name.',
+        errorMessage: 'Missing parameter first name on the user.',
         userMessage: 'Veuillez indiquer votre prénom.'
     },
-    'user:create:missingLastName': {
+    'user:missingLastName': {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
-        errorMessage: 'Unable to create a new user without last name.',
+        errorMessage: 'Missing parameter last name on the user.',
         userMessage: 'Veuillez indiquer votre nom.'
     },
-    'user:create:missingEmail': {
+    'user:missingEmail': {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
-        errorMessage: 'Unable to create a new user without email.',
+        errorMessage: 'Missing parameter email on the user.',
         userMessage: 'Veuillez indiquer votre adresse e-mail.'
     },
-    'user:create:missingPassword': {
+    'user:missingPassword': {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
-        errorMessage: 'Unable to create a new user without password.',
+        errorMessage: 'Missing parameter password on the user.',
         userMessage: 'Veuillez indiquer votre mot de passe.'
     },
-    'user:create:emailAlreadyExist': {
+    'user:emailAlreadyExist': {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
-        errorMessage: 'Unable to create a new user with this email.',
+        errorMessage: 'Warning, Email already exist.',
         userMessage: "L'adresse e-mail que vous avez fourni est déjà utilisé."
     },
-    'user:show:missingId': {
+    'user:missingId': {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
-        errorMessage: 'Unable to find the user caused by missing information.',
-        userMessage: "Impossible de trouver un utilisateur sans fournir d'id."
-    },
-    'user:update:missingInformation': {
-        type: 'BadRequest',
-        httpStatus: HttpStatus.BAD_REQUEST,
-        errorMessage: 'Unable to update the user caused by missing information.',
-        userMessage: "Impossible de mettre à jour l'utilisateur avec des données manquantes."
-    },
-    'user:update:missingId': {
-        type: 'BadRequest',
-        httpStatus: HttpStatus.BAD_REQUEST,
-        errorMessage: 'Unable to update the user caused by missing information.',
-        userMessage: "Impossible de mettre à jour l'utilisateur avec des données manquantes."
-    },
-    'user:delete:missingId': {
-        type: 'BadRequest',
-        httpStatus: HttpStatus.BAD_REQUEST,
-        errorMessage: 'Unable to delete the user caused by missing information.',
-        userMessage: "Impossible de supprimer un utilisateur sans fournir d'id."
+        errorMessage: 'Missing parameter id.',
+        userMessage: "Veuillez fournir un id valid."
     },
     'user:notFound': {
         type: 'notFound',
@@ -87,5 +69,29 @@ export const errorMessagesConfig: { [messageCode: string]: IErrorMessages } = {
         httpStatus: HttpStatus.BAD_REQUEST,
         errorMessage: 'Unable to connect the user without password.',
         userMessage: 'Veuillez indiquer votre mot de passe.'
+    },
+    'action:missingAgentName': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Missing parameter agent name on the action.',
+        userMessage: "Veuillez indiquer le nom de l'agent concerné."
+    },
+    'action:missingActionName': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Missing parameter action name on the action.',
+        userMessage: "Veuillez indiquer le nom de l'action concerné."
+    },
+    'action:missingRequestId': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Missing parameter request id on the action.',
+        userMessage: "Veuillez indiquer l'identifiant de la requête concerné."
+    },
+    'action:missingData': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Missing parameter data on the action.',
+        userMessage: "Veuillez indiquer les données de l'action concerné."
     }
 };

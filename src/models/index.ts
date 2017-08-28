@@ -6,9 +6,13 @@ import * as SequelizeStatic from 'sequelize';
 import { Sequelize } from 'sequelize';
 import { databaseConfig } from '../config/dataBase';
 import { IUser, IUserInstance } from './interfaces/IUser';
+import { IAction, IActionInstance } from "./interfaces/IAction";
+import { IApiAiUser, IApiAiUserInstance } from "./interfaces/IApiAiUser";
 
 export interface SequelizeModels {
     User: SequelizeStatic.Model<IUserInstance, IUser>;
+    Action: SequelizeStatic.Model<IActionInstance, IAction>;
+    ApiAiUser: SequelizeStatic.Model<IApiAiUserInstance, IApiAiUser>;
 }
 
 class Database {

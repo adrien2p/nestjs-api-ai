@@ -1,6 +1,6 @@
 'use strict';
 
-import { Controller, Post, HttpStatus } from '@nestjs/common';
+import { Controller, Post, HttpStatus, Get } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { MessageCodeError } from '../../lib/error/MessageCodeError';
 import { AuthService } from './auth.service';

@@ -76,7 +76,7 @@ After [api.ai](https://api.ai/) received request, you should received a callback
 }
 ```
 
-And then, the result is sent to the run method of the service `CinemaActionService` which manage the rest of the process.
+And then, the result is sent to the run method of the service `TheaterActionService` which manage the rest of the process.
 Including, saving data into firebase database.
 
 And when the process is done, a response is generate to be send to the `api.api`.

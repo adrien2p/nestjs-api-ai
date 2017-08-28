@@ -1,3 +1,5 @@
+'use strict';
+
 import * as crypto from 'crypto';
 import * as SequelizeStatic from 'sequelize';
 import { DataTypes, Sequelize } from 'sequelize';
@@ -73,10 +75,10 @@ export default function User (sequelize: Sequelize, dataTypes: DataTypes): Seque
         hooks: {
             beforeValidate (user: IUserInstance, options: any): void {
                 if (!options.transaction) throw new Error('Missing transaction.');
-                if (!user.getDataValue('firstName')) throw new MessageCodeError('user:create:missingFirstName');
-                if (!user.getDataValue('lastName')) throw new MessageCodeError('user:create:missingLastName');
-                if (!user.getDataValue('email')) throw new MessageCodeError('user:create:missingEmail');
-                if (!user.getDataValue('password')) throw new MessageCodeError('user:create:missingPassword');
+                if (!user.getDataValue('firstName')) throw new MessageCodeError('user:missingFirstName');
+                if (!user.getDataValue('lastName')) throw new MessageCodeError('user:missingLastName');
+                if (!user.getDataValue('email')) throw new MessageCodeError('user:missingEmail');
+                if (!user.getDataValue('password')) throw new MessageCodeError('user:missingPassword');
             },
             beforeCreate (user: IUserInstance, options: any): void {
                 if (!options.transaction) throw new Error('Missing transaction.');

@@ -16,7 +16,7 @@ export class UsersController {
     @Post('users')
     public async create (req: Request, res: Response) {
         const body = req.body;
-        if (!body || (body && Object.keys(body).length === 0)) throw new MessageCodeError('user:create:missingInformation');
+        if (!body || (body && Object.keys(body).length === 0)) throw new MessageCodeError('user:missingInformation');
 
         await sequelize.transaction(async t => {
             return await models.User.create(body, { transaction: t });
@@ -28,7 +28,7 @@ export class UsersController {
     @Get('users/:id')
     public async show (req: Request, res: Response) {
         const id = req.params.id;
-        if (!id) throw new MessageCodeError('user:show:missingId');
+        if (!id) throw new MessageCodeError('user:missingId');
 
         const user = await models.User.findOne({
             where: { id }
@@ -40,8 +40,8 @@ export class UsersController {
     public async update (req: Request, res: Response) {
         const id = req.params.id;
         const body = req.body;
-        if (!id) throw new MessageCodeError('user:update:missingId');
-        if (!body || (body && Object.keys(body).length === 0)) throw new MessageCodeError('user:update:missingInformation');
+        if (!id) throw new MessageCodeError('user:missingId');
+        if (!body || (body && Object.keys(body).length === 0)) throw new MessageCodeError('user:missingInformation');
 
         await sequelize.transaction(async t => {
             const user = await models.User.findById(id, { transaction: t });
@@ -62,7 +62,7 @@ export class UsersController {
     @Delete('users/:id')
     public async delete (req: Request, res: Response) {
         const id = req.params.id;
-        if (!id) throw new MessageCodeError('user:delete:missingId');
+        if (!id) throw new MessageCodeError('user:missingId');
 
         await
         sequelize.transaction(async t => {

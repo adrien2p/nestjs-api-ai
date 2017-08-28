@@ -1,0 +1,48 @@
+'use strict';
+
+import { Middleware, NestMiddleware } from '@nestjs/common';
+import { Request, Response, NextFunction } from 'express';
+import * as https from 'https';
+import { models, sequelize } from '../models/index';
+
+@Middleware()
+export class ApiAiJeevesCheckOrCreateUserMiddleware implements NestMiddleware {
+    resolve () {
+        return async function (req: Request, res: Response, next: NextFunction) {
+            if (!req.body || (req.body && !req.body.originalRequest)) next();
+
+            const data = req.body;
+            const accessToken = data.originalRequest.data.user.accessToken;
+            const googleUserId = data.originalRequest.data.user.userId;
+            const googleApiUrl = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=';
+
+            const apiAiUser = await models.ApiAiUser.findOne({ where: { googleUserId: googleUserId }});
+            if (!apiAiUser) {
+                /* Get user info from google to create a new apiAiUser locally. */
+                const userInfo: any = await new Promise((resolve, reject) => {
+                    https.get(googleApiUrl + accessToken, res => {
+                        let streamData = '';
+                        res.on('data', (d) => streamData += d);
+                        res.on('error', (err) => reject(err));
+                        res.on('end', () => resolve(JSON.parse(streamData)));
+                    });
+                });
+
+                /* Create the new user. */
+                const apiAiUser = await sequelize.transaction(t => models.ApiAiUser.create({
+                    firstName: userInfo.given_name,
+                    lastName: userInfo.family_name,
+                    email: userInfo.email,
+                    accessToken: accessToken,
+                    googleUserId: googleUserId
+                }, {
+                    returning: true
+                }));
+            }
+
+            /* Put the user in the request to get it easily in the next action. */
+            req['apiAiUser'] = apiAiUser;
+            next();
+        };
+    }
+}

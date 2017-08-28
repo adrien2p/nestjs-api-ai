@@ -1,20 +1,29 @@
 'use strict';
 
-import { Module } from '@nestjs/common';
+import { Module, RequestMethod } from '@nestjs/common';
 import { MiddlewaresConsumer } from "@nestjs/common/interfaces/middlewares";
-import { ApiAiMiddleware } from "../../middlewares/apiAi.middleware";
+import { ApiAiJeevesMiddleware } from "../../middlewares/apiAi.jeeves.middleware";
+import { ApiAiJeevesCheckOrCreateUserMiddleware } from "../../middlewares/apiAi.jeeves.checkOrCreateUser.middleware";
 import { ApiAiController } from "./apiAi.controller";
-import { CinemaActionsService } from "./agents/cinema/cinemaActions.service";
-import { SharedModule } from "../shared/shared.module";
+import { InterceptorService } from "./actions/jeeves/interceptor.service";
+import { TheaterActionsService } from "./actions/jeeves/theater/theaterActions.service";
 
 @Module({
     controllers: [ApiAiController],
-    components: [CinemaActionsService],
-    modules: [SharedModule],
+    components: [
+        InterceptorService,
+        TheaterActionsService
+    ],
+    modules: [],
     exports: []
 })
 export class ApiAiModule {
     configure(consumer: MiddlewaresConsumer) {
-        consumer.apply(ApiAiMiddleware).forRoutes(ApiAiController);
+        consumer.apply([
+            ApiAiJeevesMiddleware,
+            ApiAiJeevesCheckOrCreateUserMiddleware
+        ]).forRoutes({
+            path: 'jeeves', method: RequestMethod.ALL
+        });
     }
 }

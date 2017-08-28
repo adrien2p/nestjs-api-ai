@@ -2,18 +2,18 @@
 
 import { Instance } from 'sequelize';
 
-export interface IUser {
+export interface IApiAiUser {
     id?: number;
     firstName: string;
     lastName: string;
     email: string;
-    password: string;
-    birthday?: Date;
+    accessToken: string;
+    googleUserId: string;
     createdAt?: Date;
     updatedAt?: Date;
     deletedAt?: Date;
 }
 
-export interface IUserInstance extends Instance<IUser> {
-    dataValues: IUser;
+export interface IApiAiUserInstance extends Instance<IApiAiUser> {
+    dataValues: IApiAiUser;
 }
