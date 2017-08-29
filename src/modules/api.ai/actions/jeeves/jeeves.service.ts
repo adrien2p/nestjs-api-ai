@@ -14,22 +14,22 @@ export class JeevesService extends AbstractAction implements IJeevesService {
         super();
     }
 
-    public async run (action: string, apiAiUser: IApiAiUserInstance): IResponse {
-        await this.save();
-
+    public async run (action: string, apiAiUser: IApiAiUserInstance): Promise<IResponse> {
         if (action === this.debugActionName) {
             this.debug();
             const apiAiUserFullName = `${apiAiUser.getDataValue('firstName')} ${apiAiUser.getDataValue('lastName')}`;
-            return {
+            const response = {
                 displayText: 'Debug mode is running, look at the console ' + apiAiUserFullName,
                 speech: 'Debug mode is running, look at the console ' + apiAiUserFullName
             };
+            await this.save('jeeves', response, apiAiUser);
+            return response;
         }
 
         /* Default response. */
         return {
-            displayText: "Sorry, i can't find the action asked",
-            speech : "Sorry, i can't find the action asked"
+            displayText: "You should ask me every thing",
+            speech : "You should ask me every thing"
         };
     }
 }

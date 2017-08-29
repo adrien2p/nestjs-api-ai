@@ -10,5 +10,5 @@ export interface IJeevesService extends IAbstractAction {
      * @param {string} action
      * @return {IResponse}
      */
-    run (action: string, apiAiUser: IApiAiUserInstance): IResponse;
+    run (action: string, apiAiUser: IApiAiUserInstance): Promise<IResponse>;
 }

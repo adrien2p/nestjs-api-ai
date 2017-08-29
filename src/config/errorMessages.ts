@@ -88,6 +88,12 @@ export const errorMessagesConfig: { [messageCode: string]: IErrorMessages } = {
         errorMessage: 'Missing parameter request id on the action.',
         userMessage: "Veuillez indiquer l'identifiant de la requête concerné."
     },
+    'action:missingApiAiUserId': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Missing parameter request apiAiUserId on the action.',
+        userMessage: "Veuillez indiquer l'identifiant de du api ai user."
+    },
     'action:missingData': {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,

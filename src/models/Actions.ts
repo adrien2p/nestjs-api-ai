@@ -13,6 +13,10 @@ export default function Action (sequelize: Sequelize, dataTypes: DataTypes): Seq
             autoIncrement: true,
             allowNull: false
         },
+        apiAiUserId: {
+            type: dataTypes.INTEGER,
+            allowNull: false
+        },
         agentName: {
             type: dataTypes.TEXT,
             allowNull: false
@@ -26,6 +30,10 @@ export default function Action (sequelize: Sequelize, dataTypes: DataTypes): Seq
             allowNull: false
         },
         data: {
+            type: dataTypes.JSONB,
+            allowNull: false
+        },
+        response: {
             type: dataTypes.JSONB,
             allowNull: false
         },
@@ -55,6 +63,7 @@ export default function Action (sequelize: Sequelize, dataTypes: DataTypes): Seq
                 if (!action.getDataValue('agentName')) throw new MessageCodeError('action:missingAgentName');
                 if (!action.getDataValue('actionName')) throw new MessageCodeError('action:missingActionName');
                 if (!action.getDataValue('requestId')) throw new MessageCodeError('action:missingRequestId');
+                if (!action.getDataValue('apiAiUserId')) throw new MessageCodeError('action:missingApiAiUserId');
                 if (!action.getDataValue('data')) throw new MessageCodeError('action:missingData');
             }
         }

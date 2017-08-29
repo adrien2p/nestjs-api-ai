@@ -3,13 +3,15 @@
 import { Instance } from 'sequelize';
 
 export interface IAction {
-    id: number;
+    id?: number;
+    apiAiUserId: number;
     agentName: string;
     actionName: string;
     requestId: string;
     data: any;
-    createdAt: Date;
-    updatedAt: Date;
+    response: any,
+    createdAt?: Date;
+    updatedAt?: Date;
     deletedAt?: Date;
 }
 

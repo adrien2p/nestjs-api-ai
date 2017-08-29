@@ -51,7 +51,14 @@ export default function User (sequelize: Sequelize, dataTypes: DataTypes): Seque
         timestamps: true,
         scopes: {},
         indexes: [],
-        classMethods: {},
+        classMethods: {
+            associate: (models) => {
+                ApiAiUser.hasMany(models.Action, {
+                    as: 'actions',
+                    foreignKey: 'apiAiUserId'
+                });
+            }
+        },
         instanceMethods: {},
         hooks: {}
     });
