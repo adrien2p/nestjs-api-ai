@@ -44,6 +44,7 @@ export class ApiAiJeevesCheckOrCreateUserMiddleware implements NestMiddleware {
                     await apiAiUser.update({
                         accessToken: accessToken
                     }, { transaction: t });
+                    await apiAiUser.reload();
                 }
             });
 
