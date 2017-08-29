@@ -1,4 +1,5 @@
 `use strict`;
+
 import { Component } from '@nestjs/common';
 import { IApiAiUserInstance } from '../../../../models/interfaces/IApiAiUser';
 import { IInterceptorService } from '../../interfaces/IInterceptorService';

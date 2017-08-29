@@ -17,28 +17,35 @@ export class ApiAiJeevesCheckOrCreateUserMiddleware implements NestMiddleware {
             const googleApiUrl = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=';
 
             let apiAiUser = await models.ApiAiUser.findOne({ where: { googleUserId: googleUserId }});
-            if (!apiAiUser) {
-                /* Get user info from google to create a new apiAiUser locally. */
-                const userInfo: any = await new Promise((resolve, reject) => {
-                    https.get(googleApiUrl + accessToken, res => {
-                        let streamData = '';
-                        res.on('data', (d) => streamData += d);
-                        res.on('error', (err) => reject(err));
-                        res.on('end', () => resolve(JSON.parse(streamData)));
+            await sequelize.transaction(async t => {
+                if (!apiAiUser) {
+                    /* Get user info from google to create a new apiAiUser locally. */
+                    const userInfo: any = await new Promise((resolve, reject) => {
+                        https.get(googleApiUrl + accessToken, res => {
+                            let streamData = '';
+                            res.on('data', (d) => streamData += d);
+                            res.on('error', (err) => reject(err));
+                            res.on('end', () => resolve(JSON.parse(streamData)));
+                        });
                     });
-                });
 
-                /* Create the new user. */
-                apiAiUser = await sequelize.transaction(t => models.ApiAiUser.create({
-                    firstName: userInfo.given_name,
-                    lastName: userInfo.family_name,
-                    email: userInfo.email,
-                    accessToken: accessToken,
-                    googleUserId: googleUserId
-                }, {
-                    returning: true
-                }));
-            }
+                    /* Create the new user. */
+                    apiAiUser = await  models.ApiAiUser.create({
+                        firstName: userInfo.given_name,
+                        lastName: userInfo.family_name,
+                        email: userInfo.email,
+                        accessToken: accessToken,
+                        googleUserId: googleUserId
+                    }, {
+                        returning: true,
+                        transaction: t
+                    });
+                } else {
+                    await apiAiUser.update({
+                        accessToken: accessToken
+                    }, { transaction: t });
+                }
+            });
 
             /* Put the user in the request to get it easily in the next action. */
             req['apiAiUser'] = apiAiUser;

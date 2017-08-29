@@ -14,7 +14,9 @@ export class JeevesService extends AbstractAction implements IJeevesService {
         super();
     }
 
-    public run (action: string, apiAiUser: IApiAiUserInstance): IResponse {
+    public async run (action: string, apiAiUser: IApiAiUserInstance): IResponse {
+        await this.save();
+
         if (action === this.debugActionName) {
             this.debug();
             const apiAiUserFullName = `${apiAiUser.getDataValue('firstName')} ${apiAiUser.getDataValue('lastName')}`;

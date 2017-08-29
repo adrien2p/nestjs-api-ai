@@ -1,5 +1,7 @@
 'use strict';
+
 import { IAbstractAction } from '../interfaces/IAbstractAction';
+import { models } from "../../../models/index";
 
 export abstract class AbstractAction implements IAbstractAction{
     public data: any;
@@ -7,8 +9,8 @@ export abstract class AbstractAction implements IAbstractAction{
 
     constructor () {}
 
-    protected async saveData (data: any): Promise<any> {
-
+    protected async save (): Promise<any> {
+        await models.Action.create(this.data);
     }
 
     protected debug () {
