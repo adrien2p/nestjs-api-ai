@@ -1,6 +1,6 @@
 'use strict';
 
-import { sequelize } from '../models/index';
+import { sequelize } from '../index';
 
 export async function up () {
     // language=PostgreSQL
@@ -16,7 +16,7 @@ export async function up () {
             "createdAt" TIMESTAMP NOT NULL,
             "updatedAt" TIMESTAMP NOT NULL,
             "deletedAt" TIMESTAMP,
-          
+
           FOREIGN KEY ("apiAiUserId") REFERENCES "apiAiUsers" (id)
         );
     `);

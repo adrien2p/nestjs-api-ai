@@ -2,7 +2,7 @@
 
 import { Component } from '@nestjs/common';
 import * as localTunnel from 'localtunnel';
-import { config } from '../../config/global';
+import { config } from '../common/index';
 import { ILocalTunnelService } from './interfaces/ILocalTunnelService';
 
 @Component()

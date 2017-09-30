@@ -9,7 +9,7 @@ export interface IAction {
     actionName: string;
     requestId: string;
     data: any;
-    response: any,
+    response: any;
     createdAt?: Date;
     updatedAt?: Date;
     deletedAt?: Date;

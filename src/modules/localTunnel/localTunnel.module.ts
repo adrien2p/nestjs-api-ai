@@ -2,7 +2,7 @@
 
 import { Module } from '@nestjs/common';
 import { MiddlewaresConsumer } from '@nestjs/common/interfaces/middlewares';
-import { AuthMiddleware } from '../../middlewares/auth.middleware';
+import { AuthMiddleware } from '../common/index';
 import { LocalTunnelService } from '../localTunnel/localTunnel.service';
 import { LocalTunnelController } from '../localTunnel/localTunnel.controller';
 

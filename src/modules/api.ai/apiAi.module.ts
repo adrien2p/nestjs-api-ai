@@ -2,8 +2,10 @@
 
 import { Module, RequestMethod } from '@nestjs/common';
 import { MiddlewaresConsumer } from '@nestjs/common/interfaces/middlewares';
-import { ApiAiJeevesMiddleware } from '../../middlewares/apiAi.jeeves.middleware';
-import { ApiAiJeevesCheckOrCreateUserMiddleware } from '../../middlewares/apiAi.jeeves.checkOrCreateUser.middleware';
+import {
+    ApiAiJeevesMiddleware,
+    ApiAiJeevesCheckOrCreateUserMiddleware
+} from '../common/index';
 import { ApiAiController } from './apiAi.controller';
 import { InterceptorService } from './actions/jeeves/interceptor.service';
 import { JeevesService } from './actions/jeeves/jeeves.service';

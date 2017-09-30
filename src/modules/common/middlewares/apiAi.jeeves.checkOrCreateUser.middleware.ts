@@ -3,7 +3,7 @@
 import { Middleware, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import * as https from 'https';
-import { models, sequelize } from '../models/index';
+import { sequelize, ApiAiUser } from '../index';
 
 @Middleware()
 export class ApiAiJeevesCheckOrCreateUserMiddleware implements NestMiddleware {
@@ -16,7 +16,7 @@ export class ApiAiJeevesCheckOrCreateUserMiddleware implements NestMiddleware {
             const googleUserId = data.originalRequest.data.user.userId;
             const googleApiUrl = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=';
 
-            let apiAiUser = await models.ApiAiUser.findOne({ where: { googleUserId: googleUserId }});
+            let apiAiUser = await ApiAiUser.findOne<ApiAiUser>({ where: { googleUserId: googleUserId }});
             await sequelize.transaction(async t => {
                 if (!apiAiUser) {
                     /* Get user info from google to create a new apiAiUser locally. */
@@ -30,7 +30,7 @@ export class ApiAiJeevesCheckOrCreateUserMiddleware implements NestMiddleware {
                     });
 
                     /* Create the new user. */
-                    apiAiUser = await  models.ApiAiUser.create({
+                    apiAiUser = await ApiAiUser.create<ApiAiUser>({
                         firstName: userInfo.given_name,
                         lastName: userInfo.family_name,
                         email: userInfo.email,

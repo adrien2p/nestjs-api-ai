@@ -5,8 +5,8 @@ require('dotenv').config();
 import 'mocha';
 import { expect } from 'chai';
 import { fakeUser } from "./fixtures/fake.data";
-import { models, sequelize } from "../src/models/index";
-import { AuthService } from "../src/modules/auth/auth.service"
+import { sequelize, User } from "../../common/index";
+import { AuthService } from "../auth.service"
 
 describe('AuthService should', () => {
     let authService;
@@ -17,7 +17,7 @@ describe('AuthService should', () => {
 
         /* Create a new user for the test. */
         await sequelize.transaction(async t => {
-            return user = await models.User.create(fakeUser, {
+            return user = await User.create<User>(fakeUser, {
                 transaction: t,
                 returning: true
             });
@@ -27,7 +27,7 @@ describe('AuthService should', () => {
     after(async () => {
         /* Remove the previous created user. */
         await sequelize.transaction(async t => {
-            return await models.User.destroy({
+            return await User.destroy({
                 where: { id: user.getDataValue('id') },
                 force: true,
                 transaction: t

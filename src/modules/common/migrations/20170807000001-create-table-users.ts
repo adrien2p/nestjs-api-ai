@@ -1,27 +1,27 @@
 'use strict';
 
-import { sequelize } from '../models/index';
+import { sequelize } from '../index';
 
 export async function up () {
     // language=PostgreSQL
     sequelize.query(`
-        CREATE TABLE "apiAiUsers" (
+        CREATE TABLE "users" (
             "id" SERIAL UNIQUE PRIMARY KEY NOT NULL,
             "firstName" VARCHAR(30) NOT NULL,
             "lastName" VARCHAR(30) NOT NULL,
             "email" VARCHAR(100) UNIQUE NOT NULL,
-            "accessToken" TEXT UNIQUE NOT NULL,
-            "googleUserId" TEXT UNIQUE NOT NULL,
+            "password" TEXT NOT NULL,
+            "birthday" TIMESTAMP,
             "createdAt" TIMESTAMP NOT NULL,
             "updatedAt" TIMESTAMP NOT NULL,
             "deletedAt" TIMESTAMP
         );
     `);
 
-    console.log('*Table apiAiUsers created!*');
+    console.log('*Table users created!*');
 }
 
 export async function down () {
     // language=PostgreSQL
-    sequelize.query(`DROP TABLE "apiAiUsers"`);
+    sequelize.query(`DROP TABLE users`);
 }

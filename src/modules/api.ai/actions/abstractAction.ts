@@ -1,15 +1,11 @@
 'use strict';
 
 import { IAbstractAction } from '../interfaces/IAbstractAction';
-import { models, sequelize } from "../../../models/index";
-import { IApiAiUserInstance } from "../../../models/interfaces/IApiAiUser";
-import { IAction } from "../../../models/interfaces/IAction";
+import { sequelize , Action, ApiAiUser } from '../../common/index';
 
-export abstract class AbstractAction implements IAbstractAction{
+export abstract class AbstractAction implements IAbstractAction {
     public data: any;
     protected agentName: string;
-
-    constructor () {}
 
     /**
      * @description: Allow to save some information and the request data.
@@ -17,17 +13,17 @@ export abstract class AbstractAction implements IAbstractAction{
      * @param {IApiAiUserInstance} apiAiUser
      * @return {Promise<any>}
      */
-    protected async save (agentName: string, response: any, apiAiUser: IApiAiUserInstance): Promise<any> {
-        const obj: IAction = {
+    protected async save (agentName: string, response: any, apiAiUser: ApiAiUser): Promise<any> {
+        const obj: Action = {
             apiAiUserId: apiAiUser.getDataValue('id'),
             agentName: agentName,
             actionName: this.data.result.action,
             requestId: this.data.id,
             data: this.data,
             response: response
-        };
+        } as Action;
 
-        await sequelize.transaction(t => models.Action.create(obj, { transaction: t }));
+        await sequelize.transaction(t => Action.create(obj, { transaction: t }));
     }
 
     /**

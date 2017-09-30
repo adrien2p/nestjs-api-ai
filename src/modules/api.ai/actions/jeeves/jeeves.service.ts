@@ -3,8 +3,8 @@
 import { Component } from '@nestjs/common';
 import { AbstractAction } from '../abstractAction';
 import { IResponse } from '../../interfaces/IResponse';
-import { IApiAiUserInstance } from '../../../../models/interfaces/IApiAiUser';
 import { IJeevesService } from '../../interfaces/IJeevesService';
+import { ApiAiUser } from '../../../common/models/ApiAiUser';
 
 @Component()
 export class JeevesService extends AbstractAction implements IJeevesService {
@@ -14,7 +14,7 @@ export class JeevesService extends AbstractAction implements IJeevesService {
         super();
     }
 
-    public async run (action: string, apiAiUser: IApiAiUserInstance): Promise<IResponse> {
+    public async run (action: string, apiAiUser: ApiAiUser): Promise<IResponse> {
         if (action === this.debugActionName) {
             this.debug();
             const apiAiUserFullName = `${apiAiUser.getDataValue('firstName')} ${apiAiUser.getDataValue('lastName')}`;
@@ -28,8 +28,8 @@ export class JeevesService extends AbstractAction implements IJeevesService {
 
         /* Default response. */
         return {
-            displayText: "You should ask me every thing",
-            speech : "You should ask me every thing"
+            displayText: 'You should ask me every thing',
+            speech : 'You should ask me every thing'
         };
     }
 }

@@ -1,8 +1,8 @@
 'use strict';
 
 import { IResponse } from './IResponse';
-import { IApiAiUserInstance } from '../../../models/interfaces/IApiAiUser';
 import { IAbstractAction } from './IAbstractAction';
+import { ApiAiUser } from '../../common/models/ApiAiUser';
 
 export interface IJeevesService extends IAbstractAction {
     /**
@@ -10,5 +10,5 @@ export interface IJeevesService extends IAbstractAction {
      * @param {string} action
      * @return {IResponse}
      */
-    run (action: string, apiAiUser: IApiAiUserInstance): Promise<IResponse>;
+    run (action: string, apiAiUser: ApiAiUser): Promise<IResponse>;
 }

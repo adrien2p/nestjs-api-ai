@@ -22,7 +22,7 @@
     "src/migrations/**/*.ts",
     "src/models/**/*.ts",
     "src/modules/**/*.ts",
-    "tests/**/*.ts"
+    "src/modules/auth/tests/**/*.ts"
   ],
   "exclude": [
     "node_modules",
