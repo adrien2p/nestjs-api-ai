@@ -30,7 +30,7 @@
     "lint": "tslint -c tslint.json -p tsconfig.json -e 'node_modules/**' -e '**/*.d.ts'  -e 'src/**/*.test.ts' --type-check --fix 'src/**/*.ts'",
     "migrate": "ts-node migrate.ts",
     "start": "ts-node src/server.ts --env=NODE_ENV",
-    "test": "mocha -r ts-node/register tests/*.ts"
+    "test": "mocha -r ts-node/register src/**/tests/*.ts"
   },
   "dependencies": {
     "@nestjs/common": "^4.0.2",

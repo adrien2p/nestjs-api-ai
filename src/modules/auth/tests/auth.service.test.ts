@@ -4,20 +4,23 @@ require('dotenv').config();
 
 import 'mocha';
 import { expect } from 'chai';
-import { fakeUser } from "./fixtures/fake.data";
-import { sequelize, User } from "../../common/index";
-import { AuthService } from "../auth.service"
+import { Sequelize } from 'sequelize-typescript';
+import { fakeUser } from './fixtures/fake.data';
+import { databaseConfig, User } from '../../common/index';
+import { AuthService } from '../auth.service';
 
 describe('AuthService should', () => {
     let authService;
     let user;
+    let sequelize;
 
     before(async () => {
         authService = new AuthService();
+        sequelize = new Sequelize(databaseConfig.test);
 
         /* Create a new user for the test. */
         await sequelize.transaction(async t => {
-            return user = await User.create<User>(fakeUser, {
+            return user = await User.create(fakeUser, {
                 transaction: t,
                 returning: true
             });

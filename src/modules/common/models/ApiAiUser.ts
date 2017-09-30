@@ -5,7 +5,7 @@ import {
     CreatedAt, UpdatedAt, DeletedAt, HasMany
 } from 'sequelize-typescript';
 import { IDefineOptions } from 'sequelize-typescript/lib/interfaces/IDefineOptions';
-import { Action } from './Actions';
+import { Action } from './Action';
 
 const tableOptions: IDefineOptions = { timestamp: true, tableName: 'apiAiUsers' } as IDefineOptions;
 
