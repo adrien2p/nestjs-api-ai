@@ -1,18 +1,19 @@
 'use strict';
 
 import { Controller, HttpStatus, Post, Request, Response } from '@nestjs/common';
-import { InterceptorService } from './actions/jeeves/interceptor.service';
+import { JeevesService } from "./actions/jeeves.service";
 
 @Controller()
 export class ApiAiController {
-    constructor (private interceptorService: InterceptorService) { }
+    constructor (private jeevesService: JeevesService) { }
 
     @Post('jeeves')
     public async jeeves (@Request() req, @Response() res) {
         if (!req.body) throw new Error('Missing body in the request : jeeves.');
 
         const apiAiUser = req['apiAiUser'];
-        const response = this.interceptorService.parse(req.body, apiAiUser);
+        this.jeevesService.data = req.body;
+        const response = this.jeevesService.run(req.body.result.action.toLowerCase(), apiAiUser);
         return res.status(HttpStatus.OK).json(response);
     }
 }

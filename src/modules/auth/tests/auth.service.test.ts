@@ -31,7 +31,7 @@ describe('AuthService should', () => {
         /* Remove the previous created user. */
         await sequelize.transaction(async t => {
             return await User.destroy({
-                where: { id: user.getDataValue('id') },
+                where: { id: user.id },
                 force: true,
                 transaction: t
             });

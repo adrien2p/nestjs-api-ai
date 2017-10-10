@@ -15,7 +15,7 @@ export abstract class AbstractAction implements IAbstractAction {
      */
     protected async save (agentName: string, response: any, apiAiUser: ApiAiUser): Promise<any> {
         const obj: Action = {
-            apiAiUserId: apiAiUser.getDataValue('id'),
+            apiAiUserId: apiAiUser.id,
             agentName: agentName,
             actionName: this.data.result.action,
             requestId: this.data.id,

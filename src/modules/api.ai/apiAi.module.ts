@@ -7,13 +7,11 @@ import {
     ApiAiJeevesCheckOrCreateUserMiddleware
 } from '../common/index';
 import { ApiAiController } from './apiAi.controller';
-import { InterceptorService } from './actions/jeeves/interceptor.service';
-import { JeevesService } from './actions/jeeves/jeeves.service';
+import { JeevesService } from './actions/jeeves.service';
 
 @Module({
     controllers: [ApiAiController],
     components: [
-        InterceptorService,
         JeevesService
     ],
     modules: [],
