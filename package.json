@@ -6,6 +6,7 @@
   "keywords": [
     "nest",
     "nest-js",
+    "nestjs",
     "sequelize",
     "orm",
     "nodejs",
@@ -16,6 +17,7 @@
     "dotenv",
     "api-ai",
     "assistant",
+    "dialogFlow"
     "ai"
   ],
   "author": {
