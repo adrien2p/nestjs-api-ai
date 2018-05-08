@@ -1,3 +1,5 @@
+### [UNMAINTAINED] use [nestjs-dialogflow](https://github.com/adrien2p/nestjs-dialogflow) instead
+
 ![Nest](assets/logo.png)
 
 This project allow you to catch web hook from [api.ai](https://api.ai/) when a request is triggered 
